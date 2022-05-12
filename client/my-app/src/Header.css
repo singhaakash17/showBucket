@@ -1,0 +1,37 @@
+brandlog{
+    display: inline-flex !important;
+}
+nav {
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3f51b5;
+    box-shadow: 0 5px 10px #ccc;
+  }
+  
+  nav a {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 100%;
+    text-decoration: none;
+  }
+.link{
+    padding-left: 25px;
+    color:black;
+}
+.link-active{
+    color: white;
+    background: orange;
+}
+.link:hover{
+    background-color: coral;
+}
+      .link:link,
+      .link:visited {
+        margin: unset;
+        
+    }
+    

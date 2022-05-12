@@ -1,0 +1,39 @@
+input{
+    align-items: center;
+    margin: 10px;
+}
+textarea{
+    align-items: center;
+    resize: none;
+    margin-top:55px;
+    margin: 10px;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+
+}
+
+.FormContainer {
+    border: 1px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    box-shadow: 0 5px 10px #ccc;
+  }
+label{
+   display:inline-block;
+   width: 200px;
+   
+}
+

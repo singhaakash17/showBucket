@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: aakash1708/showlist
+    container_name: server
+    command: /app/node_modules/.bin/nodemon server.js
+    volumes:
+      - ./server/:/app
+      - /app/node_modules
+    ports:
+      - "8000:8000"
+    env_file: ./server/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+  
+  client:
+    build:
+      context: ./client/my-app
+      dockerfile: Dockerfile
+    image: aakash1708/showlist-front
+    container_name: client
+    command: npm start
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
