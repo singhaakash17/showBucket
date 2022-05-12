@@ -6,8 +6,14 @@ import {Container, Grid} from '@material-ui/core';
 
 function Shows() {
     const [shows,setShows]=useState([]);
+    const Token= localStorage.getItem("token");
+
   useEffect(()=>{
-        axios.get('api/show')
+        axios.get('api/show',{
+            headers:{
+              'x-access-token' : `${Token}` 
+            }          
+        })
         .then((response:any)=>{
             setShows(response.data)
            

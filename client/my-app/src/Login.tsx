@@ -13,7 +13,8 @@ function Login() {
     e.preventDefault();
     const token=await axios.get('api/user?username='+username+'&password='+password);
     if(token.data.accessToken!= undefined){
-        localStorage.setItem("isAuthenticated","true")
+        localStorage.setItem("isAuthenticated","true");
+        localStorage.setItem("token",token.data.accessToken);
         setMessage("")
         window.location.href = '/show';
     }

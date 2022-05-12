@@ -13,16 +13,21 @@ function AddForm() {
     const [message,setMessage] = useState("");
     const [formTitle,setformTitle] = useState("Add")
     let data=useLocation();
-
+    const Token= localStorage.getItem("token");
     useEffect(()=>{
        
 getData();
     },[])
     const getData = async () => {
         //const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
+       
         if(data.state)
         {
-        let response = await axios.get("api/show/"+data.state);
+        let response = await axios.get("api/show/"+data.state,{
+          headers:{
+            'x-access-token' : `${Token}` 
+          }
+        });
         
         let prefillData=response.data;
         setformTitle("Update")
@@ -50,8 +55,10 @@ getData();
     }
     if(formTitle==="Add"){
     try{
-    
-    const response=await axios.post('api/show',payload);
+    const headers={
+      'x-access-Token' : `${Token}`
+    }
+    const response=await axios.post('api/show',payload,{headers:headers});
     console.log(response)
     if(response.status==200){
         setMessage(response.data.message)
@@ -70,9 +77,13 @@ catch(e:any){
 }
 }
 else{
+  console.log(Token)
     try{
-    
-        const response=await axios.put('api/show/'+data.state,payload);
+      const headers={
+        'x-access-Token' : `${Token}`
+      }
+        const response=await axios.put('api/show/'+data.state,payload,{headers:headers});
+
         if(response.status==200){
             setMessage(response.data.message)
             setTitle("")
@@ -85,7 +96,6 @@ else{
         }    
     }
     catch(e:any){
-            console.log("Could not Update Show/Movie")
             setMessage("Could not Update Show/Movie")
     }
 }

@@ -8,10 +8,14 @@ import {Rating} from 'react-simple-star-rating'
 function Show({showId,review,title,rating,app}:{showId:any,review:any,title:any,rating:any,app:any}) {
   
   const[showMore,setShowMore]=useState(false);
-   
+  const Token= localStorage.getItem("token");
   
   async function handleDelete(){
-    const response=await axios.delete('api/show/'+showId);
+    const response=await axios.delete('api/show/'+showId,{
+      headers:{
+        'x-access-Token' : `${Token}`
+      }
+    });
     console.log(response)
   }
 
